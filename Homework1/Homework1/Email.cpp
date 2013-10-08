@@ -39,9 +39,3 @@ bool Email::IsValid()
 		Domain.IsValid();
 }
 
-
-
-//1.Parses email Address into LocalPart and Domain
-//2.LocalPart must be valid
-//3.Domain must be valid
-

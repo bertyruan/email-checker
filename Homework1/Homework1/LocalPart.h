@@ -4,7 +4,7 @@
 #pragma once
 
 #include <string>
-#include "CheckAdjacentChar.h"
+#include "CheckChar.h"
 using namespace std;
 
 class LocalPart

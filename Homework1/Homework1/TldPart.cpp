@@ -11,6 +11,8 @@
 void TldPart::Set(const string& address)
 {
 	Address = address;
+
+	//captializes all the characters in address using the algorithm class
 	transform(Address.begin(), Address.end(),Address.begin(), ::toupper);
 }
 
@@ -18,6 +20,8 @@ void TldPart::Set(const string& address)
 bool TldPart::IsValid()
 {
 	bool isValid = true;
+
+	//inputing all the valid Tlds from ValidTLDs.txt
 	ifstream input("ValidTLDs.txt");
 	string tld;
 
@@ -25,12 +29,10 @@ bool TldPart::IsValid()
 	{
 		input >> tld;
 
+		//if one of the valid Tlds matches Address, return true
 		if (tld == Address)
 			return isValid;
 	}
-
-
-	// Check against the list of ICAN domains
 
 	return !isValid;
 }

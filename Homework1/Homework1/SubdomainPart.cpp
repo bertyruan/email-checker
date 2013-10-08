@@ -4,8 +4,7 @@
 #pragma once
 
 #include "SubdomainPart.h"
-#define VALID_DOMAIN_CHARS "abcefghijklmnopqrstuvwxyzADBCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_"
-
+#define VALID_DOMAIN_CHARS "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_"
 #define DASH '-'
 
 // Takes the address and stores into the Address data member
@@ -17,12 +16,12 @@ SubdomainPart::SubdomainPart(const string& address)
 // Returns true when the Address is valid or false otherwise
 bool SubdomainPart::IsValid()
 {
-	// 1. Check the size
-	if (Address.size() > 265)
+	// 1. Check the size which can't be greater than 255
+	if (Address.size() > 255)
 		return false;
 
 	// 2. Check for valid characters
-	if (Address.find_first_not_of(VALID_DOMAIN_CHARS) == string::npos)
+	if (Address.find_first_not_of(VALID_DOMAIN_CHARS) != string::npos)
 		return false;
 
 

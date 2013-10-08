@@ -18,15 +18,16 @@ void DomainPart::Set(const string& address)
 //Checks if the domain is valid
 bool DomainPart::ValidDomain()
 {
-	if (Address.find(DOT) == string::npos)  //if there is no first dot in the domain, then return false
+	//if there is no first dot in the domain, then return false
+	if (Address.find(DOT) == string::npos)  
 		return false;
 
-
+	//checks to see if there is two or more adjacent periods
 	if (CheckAdjacentChar(DOT, Address) == false)
 		return false;
 
-
-	if (Address.find(DOT) == 0 || Address.find(DOT, Address.size() - 1 ) != string::npos) //if there is a dot at the beginning or end of the domain 
+	//checks to see if the string begins or ends with a period
+	if (CheckDashAndDots(DOT, Address) == false)
 		return false;
 
 	return true;
@@ -43,15 +44,17 @@ bool DomainPart::Parse()
 
 	// Looking for dots
 
-	int firstDot = Address.find(DOT); //gets the index for the first dot
-	int nextDot = Address.find(DOT, firstDot + 1); //gets the index for the second dot
+	//gets the index for the first dot
+	int firstDot = Address.find(DOT); 
 
+	//gets the index for the second dot
+	int nextDot = Address.find(DOT, firstDot + 1); 
 
-	Subdomains.push_back(SubdomainPart(Address.substr(FIRST_INDEX, firstDot - 1)));
-	// put the domain part into the vector, but do not include the dot
-
-
-	while(nextDot != string::npos)  //while there is another dot
+	// pushes the domain part without the period into the vector 
+	Subdomains.push_back(SubdomainPart(Address.substr(FIRST_INDEX, firstDot)));
+	
+	//while another dot exists
+	while(nextDot != string::npos)  
 		{
 
 			//example:   
@@ -63,23 +66,25 @@ bool DomainPart::Parse()
 			// nextDot - firstDot - 1 ==> 7 - 3 - 1 = 3
 				//the subdomain length will be three
 
-
+			//finds the next substring after the first period
 			string substring = Address.substr(firstDot + 1, nextDot - firstDot - 1);
 
+			//adds substring to vector subdomains
 			Subdomains.push_back(SubdomainPart(substring)); 
+
+			//increments to next dot. If none, nextDot equals npos
 			firstDot = nextDot;
 			nextDot = Address.find(DOT,firstDot + 1);
-
-
 		}
 	
 
-	// Use the Set() function to populate TldPart
-
+	// take the substring after the last dot and set Tld to it. 
+	// Notice that this substring was not pushed into Subdomains
 	Tld.Set(Address.substr(Address.find_last_of(DOT) + 1));
 
 	return true;
 }
+
 
 // Calls IsValid() for each Subdomain
 bool DomainPart::SubdomainsAreValid()
@@ -100,4 +105,3 @@ bool DomainPart::IsValid()
 		SubdomainsAreValid() &&
 		Tld.IsValid();
 }
-//Populate TLD from the last dot until the end of the Address goes into Tld

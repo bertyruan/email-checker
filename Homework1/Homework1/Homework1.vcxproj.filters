@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Email.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -33,7 +30,10 @@
     <ClCompile Include="DomainPart.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CheckAdjacentChar.cpp">
+    <ClCompile Include="CheckChar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,7 +53,7 @@
     <ClInclude Include="DomainPart.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CheckAdjacentChar.h">
+    <ClInclude Include="CheckChar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
