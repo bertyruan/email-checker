@@ -4,6 +4,7 @@
 #pragma once
 
 #include <string>
+#include "CheckAdjacentChar.h"
 using namespace std;
 
 class LocalPart
@@ -18,10 +19,12 @@ public:
 	// Returns true when the Address is valid or false otherwise
 	bool IsValid();
 
+	// Made public because DomainPart needs the code
+	
+
 private:
 	string Address;
 
-	bool CheckAdjacentChar(const char character);
 };
 
 

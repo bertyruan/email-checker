@@ -79,6 +79,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CheckAdjacentChar.cpp" />
     <ClCompile Include="DomainPart.cpp" />
     <ClCompile Include="Email.cpp" />
     <ClCompile Include="LocalPart.cpp" />
@@ -87,6 +88,7 @@
     <ClCompile Include="TldPart.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CheckAdjacentChar.h" />
     <ClInclude Include="DomainPart.h" />
     <ClInclude Include="Email.h" />
     <ClInclude Include="LocalPart.h" />

@@ -22,7 +22,8 @@ bool SubdomainPart::IsValid()
 		return false;
 
 	// 2. Check for valid characters
-	Address.find_first_not_of(VALID_DOMAIN_CHARS);
+	if (Address.find_first_not_of(VALID_DOMAIN_CHARS) == string::npos)
+		return false;
 
 
 	// 3. Check for dash rule

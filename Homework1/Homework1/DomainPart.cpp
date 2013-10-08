@@ -5,8 +5,8 @@
 #pragma once
 
 #include "DomainPart.h"
+#include "LocalPart.h"
 #define DOT '.'
-#define TWO_DOTS '..'
 #define FIRST_INDEX 0
 
 // Takes the address and stores into the Address data member
@@ -18,11 +18,13 @@ void DomainPart::Set(const string& address)
 //Checks if the domain is valid
 bool DomainPart::ValidDomain()
 {
-	if(Address.find_first_of("..") == string::npos) //if there are dots next to each other
+	if (Address.find(DOT) == string::npos)  //if there is no first dot in the domain, then return false
 		return false;
 
-	if (Address.find(".") == string::npos)  //if there is no first dot, then return false
+
+	if (CheckAdjacentChar(DOT, Address) == false)
 		return false;
+
 
 	if (Address.find(DOT) == 0 || Address.find(DOT, Address.size() - 1 ) != string::npos) //if there is a dot at the beginning or end of the domain 
 		return false;
