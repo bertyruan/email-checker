@@ -5,7 +5,7 @@
 
 #include "SubdomainPart.h"
 #define VALID_DOMAIN_CHARS "abcefghijklmnopqrstuvwxyzADBCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_"
-#define LENGTH_OF_VALID_CHARS 64
+
 #define DASH '-'
 
 // Takes the address and stores into the Address data member
@@ -22,17 +22,7 @@ bool SubdomainPart::IsValid()
 		return false;
 
 	// 2. Check for valid characters
-	for (int i = 0; i < Address.size(); i++)
-	{
-		int counter = 0;
-		for (int j = 0; j < LENGTH_OF_VALID_CHARS; j++)
-		{
-			if (Address[i] == VALID_DOMAIN_CHARS[j])
-				counter++;
-		}
-		if (counter != 1)
-			return false;
-	}
+	Address.find_first_not_of(VALID_DOMAIN_CHARS);
 
 
 	// 3. Check for dash rule

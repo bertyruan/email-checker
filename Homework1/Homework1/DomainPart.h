@@ -29,6 +29,8 @@ private:
 	// Calls IsValid() for each Subdomain
 	bool SubdomainsAreValid();
 
+	bool ValidDomain();
+
 	string Address;
 	vector<SubdomainPart> Subdomains;
 	TldPart Tld;

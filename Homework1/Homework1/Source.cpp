@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <fstream>
-
+#include <string>
 #include "Email.h"
 
 
@@ -29,21 +29,17 @@ using namespace std;
 //toplevel domain ICANN
 
 
-
-
-
 void main()
 {
 	ifstream input("Email.txt");
 	ofstream output("Result.txt");
 
-
-	bool isValid = false;
-
 	//1. While not at the end of email.txt file
 
 	while(!input.eof())
 	{
+		bool isValid = false;
+
 		//2. Read an email address from email.txt
 		string emailAddress;
 		input >> emailAddress;
@@ -57,7 +53,7 @@ void main()
 
 
 		//4. Write 0 or 1 to the Result.txt file
-		output << isValid << "   " << emailAddress << endl;
+		output << isValid << "	"  << emailAddress << endl;
 
 	}
 

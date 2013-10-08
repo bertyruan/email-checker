@@ -21,7 +21,7 @@ public:
 private:
 	string Address;
 
-	bool CheckAdjacentDuplicates(const char) const;
+	bool CheckAdjacentChar(const char character);
 };
 
 

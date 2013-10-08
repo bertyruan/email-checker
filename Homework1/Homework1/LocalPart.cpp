@@ -3,11 +3,10 @@
 #pragma once
 
 #include "LocalPart.h"
-#define INVALID_CHARACTERS ":<>\" (),;[]\|"
-#define LENGTH_OF_INVALID_CHARACTERS 12
+#define VALID_CHARACTERS "-_$.0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 #define DOT '.'
-#define SHORT_DASH '-'
-#define LONG_DASH '_'
+#define DASH '-'
+
 
 //x.
 //.x
@@ -23,23 +22,23 @@ void LocalPart::Set(const string& address)
 	Address = address;
 }
 
-
-bool LocalPart::CheckAdjacentDuplicates(const char character) const
+bool LocalPart::CheckAdjacentChar(const char character)
 {
-	bool isInvalid = false;
-
-	int dot = Address.find(character);
-
-	while(dot != string::npos)
+	unsigned int startPosition = 0;
+	while(Address.find(character, startPosition) != string::npos)
 	{
-		if (Address.find(character, dot + 1) == (dot + 1))
-			return isInvalid;
+		if (Address[Address.find(character, startPosition) + 1 ] == character)
+			return false;
 		else
-			dot = Address.find(character, dot + 1);
+			if (startPosition > Address.size())
+				return true;
+			startPosition = Address.find('.', startPosition + 1);
+			
 	}
 
-	return !isInvalid;
+	return true;
 }
+
 
 // Returns true when the Address is valid or false otherwise
 bool LocalPart::IsValid()
@@ -55,30 +54,15 @@ bool LocalPart::IsValid()
 	// 2. Check for valid characters
 	//Address.find_first_not_of()
 
-	for (int i = 0; i < Address.size(); i++)
-	{
-		for (int j = 0; j < LENGTH_OF_INVALID_CHARACTERS; j++)
-		{
-			if (Address[i] == INVALID_CHARACTERS[j])
-				return isInvalid;
-		}
-	}
-
-
-	// 3. Check the dot rule
-
-
-	if (CheckAdjacentDuplicates(DOT) == false)
+	if(Address.find_first_not_of(VALID_CHARACTERS) != string::npos)
 		return isInvalid;
 
 
-	// 4. Check dash rule
+	// 3. Check the dot and dash rule
 
-	if (CheckAdjacentDuplicates(SHORT_DASH) == false)
-		return isInvalid;
+	//if( CheckAdjacentChar(DOT) == false || CheckAdjacentChar(DASH) == false)
+	//	return false;
 
-	if (CheckAdjacentDuplicates(LONG_DASH) == false)
-		return isInvalid;
 
 
 	return !isInvalid;
