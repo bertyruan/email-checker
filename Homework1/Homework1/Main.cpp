@@ -5,7 +5,8 @@
 #include <fstream>
 #include <string>
 #include "Email.h"
-
+#define INPUT_FILE "Email.txt"
+#define OUTPUT_FILE "Result.txt"
 
 using namespace std;
 
@@ -41,8 +42,8 @@ using namespace std;
 
 void main()
 {
-	ifstream input("Email.txt");
-	ofstream output("Result.txt");
+	ifstream input(INPUT_FILE);
+	ofstream output(OUTPUT_FILE);
 
 	//1. While not at the end of email.txt file
 
@@ -52,7 +53,7 @@ void main()
 
 		//2. Read an email address from email.txt
 		string emailAddress;
-		input >> emailAddress;
+		getline(input, emailAddress);
 
 		Email theAddress(emailAddress);
 

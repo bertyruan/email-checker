@@ -6,6 +6,7 @@
 #include "SubdomainPart.h"
 #define VALID_DOMAIN_CHARS "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_"
 #define DASH '-'
+#define LARGEST_SUBDOMAIN_LENGTH_SIZE 255
 
 // Takes the address and stores into the Address data member
 SubdomainPart::SubdomainPart(const string& address)
@@ -17,7 +18,7 @@ SubdomainPart::SubdomainPart(const string& address)
 bool SubdomainPart::IsValid()
 {
 	// 1. Check the size which can't be greater than 255
-	if (Address.size() > 255)
+	if (Address.size() > LARGEST_SUBDOMAIN_LENGTH_SIZE)
 		return false;
 
 	// 2. Check for valid characters

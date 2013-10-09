@@ -6,6 +6,8 @@
 #define VALID_CHARACTERS "-_$.'+0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 #define DOT '.'
 #define DASH '-'
+#define SMALLEST_LOCAL_LENGTH_SIZE 1
+#define LARGEST_LOCAL_LENGTH_SIZE 64
 
 
 // Takes the address and stores into the Address data member
@@ -19,17 +21,15 @@ void LocalPart::Set(const string& address)
 bool LocalPart::IsValid()
 {
 
-	bool isInvalid = false;
-
 	// 1. Check the length: must be 1..64
-	if (Address.size() < 1 || Address.size() > 64)
-		return isInvalid;
+	if (Address.size() < SMALLEST_LOCAL_LENGTH_SIZE || Address.size() > LARGEST_LOCAL_LENGTH_SIZE)
+		return false;
 
 
 	// 2. Check for valid characters
 	//Address.find_first_not_of()
 	if(Address.find_first_not_of(VALID_CHARACTERS) != string::npos)
-		return isInvalid;
+		return false;
 
 
 	// 3. Check the dot and dash rule
@@ -40,5 +40,5 @@ bool LocalPart::IsValid()
 		return false;
 
 
-	return !isInvalid;
+	return true;
 }

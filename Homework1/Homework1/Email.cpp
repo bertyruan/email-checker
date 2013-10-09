@@ -2,6 +2,7 @@
 //Written by Berty Ruan
 
 #include "Email.h"
+#define AT_SIGN '@'
 
 // Takes the emailAddress and stores into the Address data member
 Email::Email(const string& emailAddress)
@@ -13,7 +14,7 @@ Email::Email(const string& emailAddress)
 bool Email::Parse()
 {
 	// 1. Find the index of '@'
-	int atIndex = Address.find('@');
+	int atIndex = Address.find(AT_SIGN);
 
 	// 2. Was '@' found?
 	//npos means the largest value. at unsigned int, npos will be the largest signed int if atIndex is -1
